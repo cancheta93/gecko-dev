@@ -211,7 +211,11 @@ function sendString(aStr, aWindow) {
  * No modifiers are handled at this point.
  */
 function sendKey(aKey, aWindow) {
-  var keyName = "VK_" + aKey.toUpperCase();
+  // check if the prefix is already appended to the keyCode
+  var keyName = aKey;
+  if(aKey != 'null' && aKey.substring(0,2) != 'VK_'){
+    keyName = "VK_" + aKey.toUpperCase();
+  }
   synthesizeKey(keyName, { shiftKey: false }, aWindow);
 }
 
